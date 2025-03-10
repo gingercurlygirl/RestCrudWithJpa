@@ -1,82 +1,61 @@
 package com.example.RestCrudWithJpa;
 
-import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/products")
+@RequestMapping("/channels")
 @RestController
-public class ProductController {
+public class ChannelController {
 
-    ProductService productService;
+      List<Channel> channels = new ArrayList<>();
 
+    @PostMapping("/{id}/{name}") //localhost:8080/channels/1/name
+    public void createChannel(@PathVariable Long id,  @PathVariable String name){
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
-    //    @PostMapping("/{id}/{name}/{price}/{quantity}")   //localhost:8080/products
-//    public void createProduct(@PathVariable Long id, @PathVariable String name, @PathVariable Double price, @PathVariable Integer quantity) {
-//
-//        Product p = new Product(id, name, price, quantity);
-//        System.out.println(p.toString());
-//
-//    }
-//    @PostMapping
-//    public void createProductByQuery(@RequestParam Long id, @RequestParam String name, @RequestParam Double price, @RequestParam Integer quantity) {
-//
-//        Product p = new Product(id, name, price, quantity);
-//        System.out.println(p.toString());
-//    }
-
-    @PostMapping    //localhost:8080/products
-    public Optional<Channel> createProductByRequestBody(@Valid @RequestBody Channel product) {
-
-        Optional<Channel> result = productService.addProduct(product);
-
-        return result;
-
+        Channel c = new Channel(id, name);
+        System.out.println(c.toString());
     }
 
-    @GetMapping  //localhost:8080/products
-    public List<Channel> getProducts() {
-        return productService.getAllProducts();
+    @PostMapping //localhost:8080/channels
+    public void createChannelByRequestBody(@RequestBody Channel channel){
+        channels.add(channel);
+
+        System.out.println(channel.toString());
+    }
+
+    @GetMapping //localhost:8080/channels
+    public List<Channel> getAllChannels(){
+        return channels;
     }
 
     @GetMapping("/{id}")
-    public Channel getProductById(@PathVariable Long id) {
+    public Channel getChannelById(@PathVariable Long id){
+       Optional<Channel> channel =channels.stream().filter(c -> c.getId() == id).findFirst();
 
-        Optional<Channel> product = productService.getProductById(id);
-        return product.orElse(null);
+       return channel.orElse(null);
+
     }
 
     @PutMapping
-    public ResponseEntity<Channel> updateProduct(@Valid @RequestBody Channel newProduct) throws Exception {
+    public Channel updateChannelById(@RequestBody Channel newChannel){
+        Optional<Channel> channel = channels.stream().filter(c -> c.getId() == newChannel.getId()).findFirst();
 
-        Optional<Channel> op = productService.updateProduct(newProduct);
+       channel.ifPresent(c -> {
+           c.setName(newChannel.getName());
+       });
 
-        if (op.isPresent()) {
-            return ResponseEntity.accepted().body(newProduct);
-        } else {
-            return  ResponseEntity.notFound().build();
-        }
+       return  channel.orElse(null);
+
+
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProductById(@PathVariable Long id) {
-        productService.deleteProduct(id);
+    public void deleteChannelById(@PathVariable Long id){
+        channels.removeIf(c -> c.getId() == id);
     }
 
-//    @GetMapping   //localhost:8080/products
-//    public String getAllProducts() {
-//        return "";
-//
-//    }
-//    @GetMapping("products/name")   //localhost:8080/products/name
-//    public Product getProductByName(String name) {
-//
-//
-//    }
+
 }

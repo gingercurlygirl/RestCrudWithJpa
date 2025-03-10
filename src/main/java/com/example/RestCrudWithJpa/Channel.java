@@ -1,19 +1,18 @@
 package com.example.RestCrudWithJpa;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
 public class Channel {
-     private String name;
+
      private long id;
+
+     private String name;
+
 
      public Channel() {
 
      }
-     public Channel(String name, long id) {
-         this.name = name;
+     public Channel(long id, String name) {
          this.id = id;
+         this.name = name;
      }
 
     public String getName() {
