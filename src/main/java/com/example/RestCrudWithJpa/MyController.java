@@ -1,4 +1,4 @@
-package com.example.SpringRestExempel;
+package com.example.RestCrudWithJpa;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

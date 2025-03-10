@@ -1,13 +1,9 @@
-package com.example.SpringRestExempel;
+package com.example.RestCrudWithJpa;
 
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,30 +32,30 @@ public class ProductController {
 //    }
 
     @PostMapping    //localhost:8080/products
-    public Optional<Product> createProductByRequestBody(@Valid @RequestBody Product product) {
+    public Optional<Channel> createProductByRequestBody(@Valid @RequestBody Channel product) {
 
-        Optional<Product> result = productService.addProduct(product);
+        Optional<Channel> result = productService.addProduct(product);
 
         return result;
 
     }
 
     @GetMapping  //localhost:8080/products
-    public List<Product> getProducts() {
+    public List<Channel> getProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
+    public Channel getProductById(@PathVariable Long id) {
 
-        Optional<Product> product = productService.getProductById(id);
+        Optional<Channel> product = productService.getProductById(id);
         return product.orElse(null);
     }
 
     @PutMapping
-    public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product newProduct) throws Exception {
+    public ResponseEntity<Channel> updateProduct(@Valid @RequestBody Channel newProduct) throws Exception {
 
-        Optional<Product> op = productService.updateProduct(newProduct);
+        Optional<Channel> op = productService.updateProduct(newProduct);
 
         if (op.isPresent()) {
             return ResponseEntity.accepted().body(newProduct);

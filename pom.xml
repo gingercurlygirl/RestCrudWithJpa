@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>SpringRestExempel</artifactId>
+	<artifactId>RestCrudWithJpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringRestExempel</name>
+	<name>RestCrudWithJpa</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
