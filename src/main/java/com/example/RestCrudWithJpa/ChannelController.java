@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequestMapping("/channels")
 @RestController
@@ -29,6 +30,11 @@ public class ChannelController {
     @GetMapping //localhost:8080/channels
     public List<Channel> getAllChannels(){
         return channelService.getAllChannels();
+    }
+
+    @PostMapping("/{cId}/messages")
+    public ResponseEntity<ChannelDTO> addMessagesToChannel(@PathVariable Long cId, @RequestBody Set<Long> messageIds){
+        return ResponseEntity.ok(channelService.addMessagesToChannel(cId, messageIds));
     }
 
     @GetMapping("/{id}")
