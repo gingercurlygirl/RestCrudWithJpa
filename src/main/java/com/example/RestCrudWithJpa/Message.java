@@ -1,6 +1,7 @@
 package com.example.RestCrudWithJpa;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -14,7 +15,7 @@ public class Message {
 
     private String message;
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "messages")
     private Set<Channel> Channels;
 

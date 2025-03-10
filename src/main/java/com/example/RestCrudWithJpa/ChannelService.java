@@ -19,8 +19,9 @@ public class ChannelService {
 
     MessageRepository messageRepository;
 
-    public ChannelService(ChannelRepository repo) {
+    public ChannelService(ChannelRepository repo, MessageRepository messageRepository) {
         this.repo = repo;
+        this.messageRepository = messageRepository;
     }
 
     public Channel addChannel(Channel channel) {
@@ -28,12 +29,19 @@ public class ChannelService {
         return repo.save(channel);
     }
 
-    public List<Channel> getAllChannels() {
-        return repo.findAll();
+    public List<ChannelDTO> getAllChannels() {
+        List<Channel> channels = repo.findAll();
+
+        return channels.stream().map(ChannelMapper.INSTANCE::channelToChannelDTO).collect(Collectors.toList());
     }
 
-    public Optional<Channel> getChannelById(Long id) {
-        return repo.findById(id);
+    public ChannelDTO getChannelById(Long id) {
+        Optional<Channel> channel = repo.findById(id);
+        if (channel.isPresent()) {
+            Optional<ChannelDTO> result = channel.map(ChannelMapper.INSTANCE::channelToChannelDTO);
+            return result.orElse(null);
+        }
+        return null;
 
     }
 

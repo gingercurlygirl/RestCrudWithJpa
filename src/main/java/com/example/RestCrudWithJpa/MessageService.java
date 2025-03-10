@@ -6,7 +6,7 @@ import java.util.List;
 
 @Service
 public class MessageService {
-     private MessageRepository messageRepository;
+    private MessageRepository messageRepository;
 
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
@@ -23,7 +23,7 @@ public class MessageService {
 
     public Message updateMessage(Message newMessage) {
 
-        return messageRepository.findById(newMessage.getId()).map(message-> {
+        return messageRepository.findById(newMessage.getId()).map(message -> {
             message.setMessage(newMessage.getMessage());
             return messageRepository.save(message);
         }).orElse(null);

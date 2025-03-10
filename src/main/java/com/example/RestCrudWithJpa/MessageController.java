@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/messages")
 public class MessageController {
 
-      private MessageService messageService;
+    private MessageService messageService;
 
 
     public MessageController(MessageService messageService) {
@@ -24,7 +24,7 @@ public class MessageController {
     }
 
     @PostMapping
-    public ResponseEntity<Message> createNewMessage(@RequestBody Message message){
+    public ResponseEntity<Message> createNewMessage(@RequestBody Message message) {
         return ResponseEntity.ok(messageService.createMessage(message));
     }
 
@@ -32,17 +32,18 @@ public class MessageController {
     public ResponseEntity<Message> updateMessage(@Valid @RequestBody Message newMessage) throws Exception {
 
 
-       Message message = messageService.updateMessage(newMessage);
+        Message message = messageService.updateMessage(newMessage);
 
         if (message != null) {
             return ResponseEntity.accepted().body(newMessage);
         } else {
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
 
     }
+
     @DeleteMapping("/{id}")
-    public void deleteMessageById(@PathVariable Long id){
+    public void deleteMessageById(@PathVariable Long id) {
         messageService.deleteMessage(id);
     }
 }

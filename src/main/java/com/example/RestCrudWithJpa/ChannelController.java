@@ -28,7 +28,7 @@ public class ChannelController {
     }
 
     @GetMapping //localhost:8080/channels
-    public List<Channel> getAllChannels(){
+    public List<ChannelDTO> getAllChannels(){
         return channelService.getAllChannels();
     }
 
@@ -38,10 +38,9 @@ public class ChannelController {
     }
 
     @GetMapping("/{id}")
-    public Channel getChannelById(@PathVariable Long id){
-       Optional<Channel> channel = channelService.getChannelById(id);
-
-       return channel.orElse(null);
+    public ResponseEntity<ChannelDTO> getChannelById(@PathVariable Long id){
+      ChannelDTO dto = channelService.getChannelById(id);
+      return ResponseEntity.ok(dto);
 
     }
 
