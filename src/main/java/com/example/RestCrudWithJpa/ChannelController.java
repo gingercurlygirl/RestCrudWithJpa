@@ -19,10 +19,11 @@ public class ChannelController {
     }
 
     @PostMapping     //localhost:8080/channels
-    public Optional<Channel> createChannelByRequestBody(@Valid @RequestBody Channel channel) {
+    public ResponseEntity<Channel> createChannelByRequestBody(@Valid @RequestBody Channel channel) {
 
-        Optional<Channel> result = channelService.addChannel(channel);
-        return result;
+        Channel result = channelService.addChannel(channel);
+
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping //localhost:8080/channels
@@ -41,9 +42,10 @@ public class ChannelController {
     @PutMapping
     public ResponseEntity<Channel> updateChannel(@Valid @RequestBody Channel newChannel) throws Exception {
 
-        Optional<Channel> oc = channelService.updateChannel(newChannel);
 
-        if (oc.isPresent()) {
+       Channel channel = channelService.updateChannel(newChannel);
+
+        if (channel != null) {
             return ResponseEntity.accepted().body(newChannel);
         } else {
             return  ResponseEntity.notFound().build();

@@ -1,5 +1,7 @@
 package com.example.RestCrudWithJpa;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -7,37 +9,40 @@ import java.util.Optional;
 
 @Service
 public class ChannelService {
-     ChannelRepository repo;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    ChannelRepository repo;
 
     public ChannelService(ChannelRepository repo) {
         this.repo = repo;
     }
 
-    public Optional<Channel> addChannel (Channel channel){
-        return repo.createChannel(channel);
+    public Channel addChannel(Channel channel) {
+        entityManager.clear();
+        return repo.save(channel);
     }
 
-    public List<Channel> getAllChannels(){
-        return repo.getAllChannel();
+    public List<Channel> getAllChannels() {
+        return repo.findAll();
     }
 
-    public Optional<Channel> getChannelById(Long id){
-        return repo.getChannelById(id);
+    public Optional<Channel> getChannelById(Long id) {
+        return repo.findById(id);
 
     }
 
-    public Optional<Channel> updateChannel(Channel newChannel){
+    public Channel updateChannel(Channel newChannel) {
 
-        Optional<Channel> channel = repo.getChannelById(newChannel.getId());
-        if (channel.isPresent()) {
-            repo.updateChannel(newChannel);
-            return channel;
-        }else return channel;
+        return repo.findById(newChannel.getId()).map(channel -> {
+            channel.setName(newChannel.getName());
+            return repo.save(channel);
+        }).orElse(null);
     }
 
-    public void deleteChannel(long id){
-        repo.deleteChannel(id);
+    public void deleteChannel(long id) {
+        repo.deleteById(id);
 
     }
 }
