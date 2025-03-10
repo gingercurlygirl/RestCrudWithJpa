@@ -1,5 +1,7 @@
 package com.example.RestCrudWithJpa;
 
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,51 +12,48 @@ import java.util.Optional;
 @RestController
 public class ChannelController {
 
-      List<Channel> channels = new ArrayList<>();
+    ChannelService channelService;
 
-    @PostMapping("/{id}/{name}") //localhost:8080/channels/1/name
-    public void createChannel(@PathVariable Long id,  @PathVariable String name){
-
-        Channel c = new Channel(id, name);
-        System.out.println(c.toString());
+    public ChannelController(ChannelService channelService) {
+        this.channelService = channelService;
     }
 
-    @PostMapping //localhost:8080/channels
-    public void createChannelByRequestBody(@RequestBody Channel channel){
-        channels.add(channel);
+    @PostMapping     //localhost:8080/channels
+    public Optional<Channel> createChannelByRequestBody(@Valid @RequestBody Channel channel) {
 
-        System.out.println(channel.toString());
+        Optional<Channel> result = channelService.addChannel(channel);
+        return result;
     }
 
     @GetMapping //localhost:8080/channels
     public List<Channel> getAllChannels(){
-        return channels;
+        return channelService.getAllChannels();
     }
 
     @GetMapping("/{id}")
     public Channel getChannelById(@PathVariable Long id){
-       Optional<Channel> channel =channels.stream().filter(c -> c.getId() == id).findFirst();
+       Optional<Channel> channel = channelService.getChannelById(id);
 
        return channel.orElse(null);
 
     }
 
     @PutMapping
-    public Channel updateChannelById(@RequestBody Channel newChannel){
-        Optional<Channel> channel = channels.stream().filter(c -> c.getId() == newChannel.getId()).findFirst();
+    public ResponseEntity<Channel> updateChannel(@Valid @RequestBody Channel newChannel) throws Exception {
 
-       channel.ifPresent(c -> {
-           c.setName(newChannel.getName());
-       });
+        Optional<Channel> oc = channelService.updateChannel(newChannel);
 
-       return  channel.orElse(null);
-
+        if (oc.isPresent()) {
+            return ResponseEntity.accepted().body(newChannel);
+        } else {
+            return  ResponseEntity.notFound().build();
+        }
 
     }
 
     @DeleteMapping("/{id}")
     public void deleteChannelById(@PathVariable Long id){
-        channels.removeIf(c -> c.getId() == id);
+        channelService.deleteChannel(id);
     }
 
 
