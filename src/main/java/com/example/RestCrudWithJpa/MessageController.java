@@ -28,10 +28,10 @@ public class MessageController {
         return ResponseEntity.ok(messageService.createMessage(message));
     }
 
-    @PutMapping
-    public ResponseEntity<Message> updateMessage(@Valid @RequestBody Message newMessage) throws Exception {
+    @PutMapping("/{id}")
+    public ResponseEntity<Message> updateMessage(@PathVariable Long id, @Valid @RequestBody Message newMessage) throws Exception {
 
-
+        newMessage.setId(id);
         Message message = messageService.updateMessage(newMessage);
 
         if (message != null) {
