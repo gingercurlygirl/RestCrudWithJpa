@@ -51,6 +51,7 @@ public class ChannelService {
         if(oc.isPresent()){
             Channel channel = oc.get();
             channel.addMessage(message);
+            message.setChannels(channel);
             repo.save(channel);
             return  ChannelMapper.INSTANCE.channelToChannelDTO(channel);
 

@@ -1,5 +1,6 @@
 package com.example.RestCrudWithJpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChannelDTO {
@@ -8,7 +9,7 @@ public class ChannelDTO {
 
     private String name;
 
-    private List<String> messages;
+    private List<String> messages = new ArrayList<>();
 
     public Long getId() {
         return id;

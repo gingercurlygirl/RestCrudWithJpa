@@ -16,20 +16,6 @@ public interface ChannelMapper {
     @Mapping(target = "messages",expression = "java(mapStrings(channel.getMessages()))")
     public ChannelDTO channelToChannelDTO(Channel channel);
 
-
-    @Mapping(target = "messages", expression = "java(mapStringsToMessages(channelDTO.getMessages()))")
-    public Channel channelToChannelDTO(ChannelDTO channelDTO);
-
-    default Set<Message> mapStringsToMessages(List<String> messageNames){
-
-
-        return messageNames != null ? messageNames.stream().map(name -> {
-            Message message = new Message();
-            message.setMessage(name);
-            return message;
-        }).collect(Collectors.toSet()) : null;
-    }
-
     default List<String> mapStrings(Set<Message> messages){
         return messages.stream().map(m -> m.getMessage()).collect(Collectors.toList());
     }
