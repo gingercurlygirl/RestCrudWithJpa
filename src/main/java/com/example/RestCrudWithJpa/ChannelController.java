@@ -32,9 +32,9 @@ public class ChannelController {
         return channelService.getAllChannels();
     }
 
-    @PostMapping("/{cId}/messages")
-    public ResponseEntity<ChannelDTO> addMessagesToChannel(@PathVariable Long cId, @RequestBody Set<Long> messageIds){
-        return ResponseEntity.ok(channelService.addMessagesToChannel(cId, messageIds));
+    @PostMapping("/{cId}")
+    public ResponseEntity<ChannelDTO> addMessagesToChannel(@PathVariable Long cId, @RequestBody Message message){
+        return ResponseEntity.ok(channelService.addMessageToChannel(cId, message));
     }
 
     @GetMapping("/{id}")

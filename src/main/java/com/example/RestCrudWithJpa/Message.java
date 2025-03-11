@@ -16,8 +16,9 @@ public class Message {
     private String message;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "messages")
-    private Set<Channel> Channels;
+    @ManyToOne
+    @JoinColumn(name = "channels_id")
+    private Channel channels;
 
     public Long getId() {
         return id;
@@ -35,12 +36,12 @@ public class Message {
         this.message = message;
     }
 
-    public Set<Channel> getChannels() {
-        return Channels;
+    public Channel getChannels() {
+        return channels;
     }
 
-    public void setChannels(Set<Channel> channels) {
-        Channels = channels;
+    public void setChannels( Channel channels) {
+        this.channels = channels;
     }
 
 }

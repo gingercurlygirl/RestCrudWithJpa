@@ -45,7 +45,20 @@ public class ChannelService {
 
     }
 
-     public ChannelDTO addMessagesToChannel(Long channelId, Set<Long> messageIds){
+    public ChannelDTO addMessageToChannel(Long channelId, Message message){
+        Optional<Channel> oc = repo.findById(channelId);
+
+        if(oc.isPresent()){
+            Channel channel = oc.get();
+            channel.addMessage(message);
+            repo.save(channel);
+            return  ChannelMapper.INSTANCE.channelToChannelDTO(channel);
+
+        }
+        return null;
+    }
+
+    public ChannelDTO addMessagesToChannel(Long channelId, Set<Long> messageIds){
 
         Optional<Channel> oc = repo.findById(channelId);
 

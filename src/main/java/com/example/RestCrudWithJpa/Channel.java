@@ -21,10 +21,7 @@ public class Channel {
     private String name;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "channel_messages",
-            joinColumns = @JoinColumn(name = "channel_id"),
-            inverseJoinColumns = @JoinColumn(name = "message_id"))
+    @OneToMany(mappedBy = "channels", cascade = CascadeType.ALL)
     private Set<Message> messages;
 
     public Channel() {
@@ -53,6 +50,10 @@ public class Channel {
 
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    public void addMessage(Message message) {
+        this.messages.add(message);
     }
 
 //    @Override
