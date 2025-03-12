@@ -28,12 +28,9 @@ public class ChannelDTO {
     }
 
 
-
     public List<String> getMessages() {
         return messages;
     }
 
-    public void setTags(List<String> messages) {
-        this.messages = messages;
-    }
+
 }

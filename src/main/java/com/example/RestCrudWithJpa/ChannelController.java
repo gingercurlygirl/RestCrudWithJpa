@@ -4,10 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @RequestMapping("/channels")
 @RestController
@@ -28,19 +25,19 @@ public class ChannelController {
     }
 
     @GetMapping //localhost:8080/channels
-    public List<ChannelDTO> getAllChannels(){
+    public List<ChannelDTO> getAllChannels() {
         return channelService.getAllChannels();
     }
 
     @PostMapping("/{cId}")
-    public ResponseEntity<ChannelDTO> addMessagesToChannel(@PathVariable Long cId, @RequestBody Message message){
+    public ResponseEntity<ChannelDTO> addMessagesToChannel(@PathVariable Long cId, @RequestBody Message message) {
         return ResponseEntity.ok(channelService.addMessageToChannel(cId, message));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChannelDTO> getChannelById(@PathVariable Long id){
-      ChannelDTO dto = channelService.getChannelById(id);
-      return ResponseEntity.ok(dto);
+    public ResponseEntity<ChannelDTO> getChannelById(@PathVariable Long id) {
+        ChannelDTO dto = channelService.getChannelById(id);
+        return ResponseEntity.ok(dto);
 
     }
 
@@ -48,18 +45,18 @@ public class ChannelController {
     public ResponseEntity<Channel> updateChannel(@Valid @RequestBody Channel newChannel) throws Exception {
 
 
-       Channel channel = channelService.updateChannel(newChannel);
+        Channel channel = channelService.updateChannel(newChannel);
 
         if (channel != null) {
             return ResponseEntity.accepted().body(newChannel);
         } else {
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
 
     }
 
     @DeleteMapping("/{id}")
-    public void deleteChannelById(@PathVariable Long id){
+    public void deleteChannelById(@PathVariable Long id) {
         channelService.deleteChannel(id);
     }
 

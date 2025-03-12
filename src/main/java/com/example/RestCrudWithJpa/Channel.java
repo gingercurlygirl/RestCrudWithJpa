@@ -32,10 +32,6 @@ public class Channel {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -48,19 +44,7 @@ public class Channel {
         return messages;
     }
 
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
-
     public void addMessage(Message message) {
         this.messages.add(message);
     }
-
-//    @Override
-//    public String toString() {
-//        return "Channel{" +
-//                "name='" + name + '\'' +
-//                ", id=" + id +
-//                '}';
-//    }
 }
