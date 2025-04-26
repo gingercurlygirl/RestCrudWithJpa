@@ -1,5 +1,7 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.service;
 
+import com.example.RestCrudWithJpa.model.Message;
+import com.example.RestCrudWithJpa.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

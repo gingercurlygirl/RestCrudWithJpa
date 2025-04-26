@@ -1,4 +1,4 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

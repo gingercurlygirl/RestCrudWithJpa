@@ -1,5 +1,10 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.service;
 
+import com.example.RestCrudWithJpa.model.ChannelDTO;
+import com.example.RestCrudWithJpa.model.Channel;
+import com.example.RestCrudWithJpa.model.Message;
+import com.example.RestCrudWithJpa.repository.ChannelRepository;
+import com.example.RestCrudWithJpa.repository.MessageRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;

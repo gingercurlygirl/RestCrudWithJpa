@@ -1,5 +1,9 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.controller;
 
+import com.example.RestCrudWithJpa.model.ChannelDTO;
+import com.example.RestCrudWithJpa.service.ChannelService;
+import com.example.RestCrudWithJpa.model.Channel;
+import com.example.RestCrudWithJpa.model.Message;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

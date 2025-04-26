@@ -1,5 +1,6 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.repository;
 
+import com.example.RestCrudWithJpa.model.Channel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

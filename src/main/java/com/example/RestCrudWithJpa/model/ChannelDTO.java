@@ -1,4 +1,4 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.model;
 
 import java.util.ArrayList;
 import java.util.List;

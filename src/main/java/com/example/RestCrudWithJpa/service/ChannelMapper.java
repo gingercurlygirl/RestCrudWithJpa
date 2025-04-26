@@ -1,5 +1,8 @@
-package com.example.RestCrudWithJpa;
+package com.example.RestCrudWithJpa.service;
 
+import com.example.RestCrudWithJpa.model.Channel;
+import com.example.RestCrudWithJpa.model.ChannelDTO;
+import com.example.RestCrudWithJpa.model.Message;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
