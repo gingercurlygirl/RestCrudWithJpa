@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -31,6 +32,7 @@ public class Channel {
     public Channel(long id, String name) {
         this.id = id;
         this.name = name;
+        this.messages = new HashSet<>();
     }
 
     public Channel(Long id, String name) {

@@ -18,6 +18,16 @@ public class Message {
     @JoinColumn(name = "channels_id")
     private Channel channels;
 
+    public Message(Long id, String message) {
+        this.id = id;
+        this.message = message;
+        this.channels = null;
+    }
+
+    public Message() {
+
+    }
+
     public Long getId() {
         return id;
     }
