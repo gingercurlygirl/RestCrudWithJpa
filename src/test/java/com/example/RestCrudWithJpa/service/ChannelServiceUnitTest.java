@@ -24,7 +24,6 @@ class ChannelServiceUnitTest {
     @InjectMocks
     private ChannelService channelService;
 
-    // TODO: create one more test
     @Test
     public void testGetChannelByIdReturnsChannel() {
         //arrange
