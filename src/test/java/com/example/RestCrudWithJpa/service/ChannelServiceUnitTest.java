@@ -11,9 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -38,6 +37,20 @@ class ChannelServiceUnitTest {
         //assert
         assertEquals("first channel", result.getName());
         verify(channelRepository).findById(1L);
+    }
+
+    @Test
+    public void testDeleteChannelById() {
+        //arrange
+        Channel channel = new Channel(1L, "first channel");
+        lenient().when(channelRepository.findById(1L)).thenReturn(Optional.of(channel));
+
+        //act
+        channelService.deleteChannel(1L);
+
+        //assert
+        boolean result = channelRepository.existsById(1L);
+        assertFalse(result);
     }
 
 }
