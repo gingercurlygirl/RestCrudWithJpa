@@ -1,4 +1,4 @@
-# Testing and Spring boot
+# RestCrudWithJPA and Testing in Spring boot
 
 ## How to run?
 1. Set environment variables `MYSQL_USER` and `MYSQL_PASSWORD` according to your MySQL.
