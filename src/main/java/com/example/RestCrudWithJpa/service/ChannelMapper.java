@@ -20,6 +20,9 @@ public interface ChannelMapper {
     public ChannelDTO channelToChannelDTO(Channel channel);
 
     default List<String> mapStrings(Set<Message> messages) {
+        if (messages == null || messages.isEmpty()) {
+            return null;
+        }
         return messages.stream().map(m -> m.getMessage()).collect(Collectors.toList());
     }
 

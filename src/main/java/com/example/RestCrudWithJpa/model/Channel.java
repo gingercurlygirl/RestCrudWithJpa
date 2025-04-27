@@ -28,6 +28,15 @@ public class Channel {
 
     }
 
+    public Channel(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Channel(Long id, String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
