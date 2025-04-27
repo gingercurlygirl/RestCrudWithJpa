@@ -37,6 +37,11 @@ class ChannelIntegrationWithMockMVC {
 
     @Test
     void testCreateAndGetChannel() throws Exception {
+        /* Integration test:
+         * This test verifies that a channel can be created
+         * via the API and subsequently retrieved based on its ID.
+         * It checks that the correct channel data is returned.
+         */
 
         //arrange
         Channel channel = new Channel(null, "first channel");

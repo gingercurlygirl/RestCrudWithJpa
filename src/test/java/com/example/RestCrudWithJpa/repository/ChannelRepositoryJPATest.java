@@ -28,6 +28,11 @@ class ChannelRepositoryJPATest {
 
     @Test
     public void testFindByName() {
+        /* Integration test:
+         * This test verifies that a channel can be successfully
+         * persisted and then retrieved by its name. It checks
+         * that the found channel matches the expected name.
+         */
 
         //arrange
         Channel channel = new Channel(null, "first channel");
@@ -43,6 +48,12 @@ class ChannelRepositoryJPATest {
 
     @Test
     public void testFindAll(){
+        /* Integration test:
+         * This test verifies that multiple channels can be
+         * successfully persisted and then retrieved in a list.
+         * It checks that the retrieved list contains all the
+         * channels that were added.
+         */
         //arrange
         Channel channel1 = new Channel(null, "first channel");
         Channel channel2 = new Channel(null, "second channel");

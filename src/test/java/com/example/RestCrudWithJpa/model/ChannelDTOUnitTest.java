@@ -8,6 +8,12 @@ class ChannelDTOUnitTest {
 
     @Test
     public void testSetAndGetMethodsForChannelDTO() {
+        /* Unit test:
+         * Testing logic in isolation from Spring and the database.
+         * This test verifies the functionality of getter and setter
+         * methods for ChannelDTO. It checks the default values
+         * and ensures that values can be set and retrieved correctly.
+         */
         ChannelDTO channelDTO = new ChannelDTO();
 
         //assert default constructor

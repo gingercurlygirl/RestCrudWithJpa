@@ -27,6 +27,10 @@ class ChannelIntegrationTest {
 
     @Test
     public void testCreateAndGetChannelByHttp() {
+        /* Integration test:
+         * This test verifies the HTTP API for creating a channel.
+         * It checks the correct status responses and the data returned in the response body.
+         */
         Channel channel = new Channel(null, "first channel");
 
         ResponseEntity<Channel> postResponse =

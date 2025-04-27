@@ -20,6 +20,11 @@ class ChannelServiceComponentTest {
 
     @Test
     public void testCreateAndFetchChannel() {
+        /* Integration test:
+         * This test verifies that a channel can be successfully created
+         * and subsequently retrieved by its ID. It checks that the
+         * created channel's details match the fetched channel.
+         */
         //arrange
         Channel channel = new Channel(1L, "first channel");
 

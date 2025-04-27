@@ -29,6 +29,11 @@ class ChannelServiceUnitTest {
 
     @Test
     public void addMessageToExistingChannel() {
+        /* Unit test:
+         * Testing the behavior of adding a message to an existing channel.
+         * This test ensures that when a message is added to a known channel,
+         * it is correctly stored and retrievable afterward.
+         */
         //arrange
         Channel channel = new Channel(1L, "first channel");
         lenient().when(channelRepository.findById(1L)).thenReturn(Optional.of(channel));
@@ -46,8 +51,11 @@ class ChannelServiceUnitTest {
 
     @Test
     public void addMessageToNonExistingChannel() {
-        /*
-         *
+        /* Unit test:
+         * Testing the behavior of adding a message to a non-existing channel.
+         * We expect that no channel will be updated, and the
+         * expected return value should be null while the retrieved
+         * channel's message list remains empty.
          */
         //arrange
         Channel channel = new Channel(1L, "first channel");
@@ -65,6 +73,12 @@ class ChannelServiceUnitTest {
 
     @Test
     public void testGetChannelByIdReturnsChannel() {
+       /* Unit test:
+        * This test verifies that the channelService can successfully
+        * retrieve a channel by its ID from the repository. It checks
+        * that the correct channel is returned and that the repository's
+        * `findById` method is invoked with the expected channel ID.
+        */
         //arrange
         Channel channel = new Channel(1L, "first channel");
         when(channelRepository.findById(1L)).thenReturn(Optional.of(channel));
@@ -79,6 +93,12 @@ class ChannelServiceUnitTest {
 
     @Test
     public void testDeleteChannelById() {
+        /* Unit test:
+         * This test verifies that a channel can be successfully
+         * deleted by its ID from the channelService. It checks that
+         * after invoking the delete method, the channel no longer
+         * exists in the repository.
+         */
         //arrange
         Channel channel = new Channel(1L, "first channel");
         lenient().when(channelRepository.findById(1L)).thenReturn(Optional.of(channel));
